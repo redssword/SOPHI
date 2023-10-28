@@ -1,5 +1,8 @@
 # SOPHI
-A complete repository with all SOPHI code (front : c#/ back cpp). 
+A complete repository with all SOPHI code (front : c#/ back cpp).  
+
+By default, working directory (data) isn't configured (and git doesn't save changes about this setting)  
+=> In Visual studio solution, need to right-click on 'SOPHI' project > Propriete de configuration > Débogage > Repertoire de travail > type the following path : $(SolutionDir)\data
 
 Initial Architecture  
 │  
