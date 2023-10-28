@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SOPHI", "SOPHI\SOPHI.vcxproj", "{21215859-79AB-40C3-8F43-0E6FDD107561}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD} = {B965A66A-8109-4D45-80A0-B53CA35D1FCD}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImageProcessing", "ImageProcessing\ImageProcessing.vcxproj", "{B965A66A-8109-4D45-80A0-B53CA35D1FCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,14 @@ Global
 		{21215859-79AB-40C3-8F43-0E6FDD107561}.Release|x64.Build.0 = Release|x64
 		{21215859-79AB-40C3-8F43-0E6FDD107561}.Release|x86.ActiveCfg = Release|Win32
 		{21215859-79AB-40C3-8F43-0E6FDD107561}.Release|x86.Build.0 = Release|Win32
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Debug|x64.ActiveCfg = Debug|x64
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Debug|x64.Build.0 = Debug|x64
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Debug|x86.ActiveCfg = Debug|Win32
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Debug|x86.Build.0 = Debug|Win32
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Release|x64.ActiveCfg = Release|x64
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Release|x64.Build.0 = Release|x64
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Release|x86.ActiveCfg = Release|Win32
+		{B965A66A-8109-4D45-80A0-B53CA35D1FCD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
