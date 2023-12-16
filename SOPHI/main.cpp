@@ -4,8 +4,8 @@
 
 int main()
 {
-	CImageNdg img("chro.bmp");
-	img.transformation("complement").seuillage("otsu").sauvegarde();
+	CImageNdg img("jellyfish_ndg_bmp.bmp"); //WIP
+	img.transformation("complement").sauvegarde();
 
 	return 0;
 }

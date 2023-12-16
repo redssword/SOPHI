@@ -665,3 +665,11 @@ CImageNdg CImageNdg::morphologie(const std::string methode, const std::string el
 
 	return out;
 }
+
+CImageNdg CImageNdg::morphologie(void)
+{
+	CImageNdg out(this->lireHauteur(), this->lireLargeur());
+	out.choixPalette(this->lirePalette()); // conservation de la palette
+	out.m_bBinaire = this->m_bBinaire; // conservation du type
+	return out;
+}

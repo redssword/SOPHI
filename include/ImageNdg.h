@@ -241,6 +241,8 @@ class CImageNdg {
 		// élément structurant options : "V4" ou "V8"
 		_declspec(dllexport) CImageNdg morphologie(const std::string methode = "dilatation", const std::string eltStructurant = "V8");
 
+		// hologramme
+		_declspec(dllexport) CImageNdg morphologie(void);
 };
 
 #endif _IMAGE_NDG_
