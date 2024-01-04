@@ -241,8 +241,17 @@ class CImageNdg {
 		// élément structurant options : "V4" ou "V8"
 		_declspec(dllexport) CImageNdg morphologie(const std::string methode = "dilatation", const std::string eltStructurant = "V8");
 
-		// hologramme
-		_declspec(dllexport) CImageNdg morphologie(void);
+		// extract from crop region
+		_declspec(dllexport) CImageNdg crop(int start_x, int start_y, int end_x, int end_y);
+
+		// square format
+		_declspec(dllexport) CImageNdg square_format(void);
+
+		// house format	
+		_declspec(dllexport) CImageNdg house_format(void);
+
+		// hologramme frame
+		_declspec(dllexport) CImageNdg hologramme_frame(void);
 };
 
 #endif _IMAGE_NDG_

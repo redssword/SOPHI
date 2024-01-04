@@ -666,7 +666,57 @@ CImageNdg CImageNdg::morphologie(const std::string methode, const std::string el
 	return out;
 }
 
-CImageNdg CImageNdg::morphologie(void)
+// extract from crop region
+CImageNdg CImageNdg::crop(int start_x, int start_y, int end_x, int end_y)
+{
+	int rows = this->lireHauteur();
+	int cols = this->lireLargeur();
+
+	int new_rows = end_y - start_y;
+	int new_cols = end_x - start_x;
+
+	CImageNdg image_output(new_rows, new_cols, 0);
+
+	if (start_x < 0 || start_y < 0 || end_x > cols || end_y > rows || start_x >= end_x || start_y >= end_y) {
+		std::cerr << "Coordonnées de recadrage invalides." << std::endl;
+		return image_output;
+	}
+
+	for (int y = start_y; y < end_y; ++y) 
+	{
+		for (int x = start_x; x < end_x; ++x) 
+		{
+			image_output(y - start_y, x - start_x) = this->operator ()(y,x);
+		}
+	}
+
+	return image_output;
+}
+
+
+// square format
+CImageNdg CImageNdg::square_format(void)
+{
+	int rows = this->lireHauteur();
+	int cols = this->lireLargeur();
+
+	if (rows > cols) 
+	{
+		int step = std::round((rows - cols) / 2.0);
+		return this->crop(0, step, cols, rows - (step));
+	}
+	else 
+	{
+		int step = std::round((cols - rows) / 2.0);
+		return this->crop(step, 0, cols - (step), rows);
+	}
+}
+
+// house format
+//CImageNdg CImageNdg::house_format(void)
+
+//hologramme frame
+CImageNdg CImageNdg::hologramme_frame(void)
 {
 	CImageNdg out(this->lireHauteur(), this->lireLargeur());
 	out.choixPalette(this->lirePalette()); // conservation de la palette

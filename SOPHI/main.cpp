@@ -4,8 +4,11 @@
 
 int main()
 {
-	CImageNdg img("jellyfish_ndg_bmp.bmp"); //WIP
-	img.transformation("complement").sauvegarde();
-
+	CImageNdg img("res/crop.bmp");
+	int rows = img.lireHauteur();
+	int cols = img.lireLargeur();
+	//img.crop(0, 0, rows/2, cols).sauvegarde("crop");
+	img.square_format().sauvegarde("square_format");
+	
 	return 0;
 }
