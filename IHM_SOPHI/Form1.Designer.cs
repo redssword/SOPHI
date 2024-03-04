@@ -34,7 +34,7 @@
             B_Video = new Button();
             B_Objet3D = new Button();
             B_Live = new Button();
-            Contenu = new ListBox();
+            Lb_Contenu = new ListBox();
             P_Preview = new Panel();
             P_PreviewButton = new Panel();
             TB_SoundVolume = new TrackBar();
@@ -68,6 +68,7 @@
             B_Image.TabIndex = 1;
             B_Image.Text = "Image";
             B_Image.UseVisualStyleBackColor = true;
+            B_Image.Click += B_Image_Click;
             // 
             // B_Video
             // 
@@ -78,6 +79,7 @@
             B_Video.TabIndex = 2;
             B_Video.Text = "Video";
             B_Video.UseVisualStyleBackColor = true;
+            B_Video.Click += B_Video_Click;
             // 
             // B_Objet3D
             // 
@@ -88,6 +90,7 @@
             B_Objet3D.TabIndex = 3;
             B_Objet3D.Text = "Objet 3D";
             B_Objet3D.UseVisualStyleBackColor = true;
+            B_Objet3D.Click += B_Objet3D_Click;
             // 
             // B_Live
             // 
@@ -99,14 +102,20 @@
             B_Live.Text = "Live";
             B_Live.UseVisualStyleBackColor = true;
             // 
-            // Contenu
+            // Lb_Contenu
             // 
-            Contenu.FormattingEnabled = true;
-            Contenu.ItemHeight = 25;
-            Contenu.Location = new Point(0, 81);
-            Contenu.Name = "Contenu";
-            Contenu.Size = new Size(328, 454);
-            Contenu.TabIndex = 5;
+            Lb_Contenu.BackColor = Color.FromArgb(224, 224, 224);
+            Lb_Contenu.BorderStyle = BorderStyle.FixedSingle;
+            Lb_Contenu.Font = new Font("Comic Sans MS", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Lb_Contenu.FormattingEnabled = true;
+            Lb_Contenu.HorizontalScrollbar = true;
+            Lb_Contenu.ItemHeight = 24;
+            Lb_Contenu.Location = new Point(0, 81);
+            Lb_Contenu.Name = "Lb_Contenu";
+            Lb_Contenu.Size = new Size(328, 434);
+            Lb_Contenu.Sorted = true;
+            Lb_Contenu.TabIndex = 5;
+            Lb_Contenu.DrawItem += Lb_Contenu_DrawItem;
             // 
             // P_Preview
             // 
@@ -202,7 +211,7 @@
             Controls.Add(B_Send);
             Controls.Add(P_PreviewButton);
             Controls.Add(P_Preview);
-            Controls.Add(Contenu);
+            Controls.Add(Lb_Contenu);
             Controls.Add(B_Live);
             Controls.Add(B_Objet3D);
             Controls.Add(B_Video);
@@ -224,7 +233,7 @@
         private Button B_Video;
         private Button B_Objet3D;
         private Button B_Live;
-        private ListBox Contenu;
+        private ListBox Lb_Contenu;
         private Panel P_Preview;
         private Panel P_PreviewButton;
         private Button B_Rewind;
