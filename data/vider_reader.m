@@ -1,9 +1,9 @@
 % Video reader
-videoFile = 'fireworks.mp4';
+videoFile = 'jellyfish_video.mp4';
 vidObj = VideoReader(videoFile);
 
 % Créez un objet VideoWriter
-outputVideo = VideoWriter('res/fireworks_hologram.mp4', 'MPEG-4');
+outputVideo = VideoWriter('res/jellyfish_video.mp4', 'MPEG-4');
 open(outputVideo);
 
 % Boucle pour écrire chaque image traitée dans la nouvelle vidéo

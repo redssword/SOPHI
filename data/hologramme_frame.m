@@ -1,5 +1,15 @@
 function output_frame = hologramme_frame(input_frame)
 
+    Height = 1080;
+    Width = 1920;
+    
+    mid_square_factor = 10/100;
+    mid_square_heigth = round(mid_square_factor * Height);
+    mid_square_width = round(mid_square_factor * Width);
+    
+    height_img = round(Height - mid_square_heigth)/2;
+    width_img = round(Width - mid_square_width)/2;
+
     % Charger l'image
     image_originale = input_frame;
     %Rotation depending on pyramide shape, to change if necessary
@@ -7,48 +17,48 @@ function output_frame = hologramme_frame(input_frame)
     image_originale = square_format(image_originale);
     image_originale = house_format(image_originale);
     % Déterminer les dimensions de l'image d'origine
-    [rows, cols, ~] = size(image_originale);
+    image_originale = imresize(image_originale, [height_img, height_img]);
+    [height_img, width_img, ~] = size(image_originale);
     
     % Créer une nouvelle image pour l'hologramme
-    %mid_sqr_factor = 5.0/10;
-    %middle_square = floor(max(mid_sqr_factor * rows, mid_sqr_factor * cols));
-    nouvelles_rows = 2 * rows; % + middle_square;
-    nouvelles_cols = 2 * cols; % + middle_square;
-    image_hologramme = zeros(nouvelles_rows, nouvelles_cols, 3, 'uint8');
+    image_hologramme = zeros(Height, Width, 3, 'uint8');
     
-    
-    % Placer l'image d'origine sur le côté du bas
-    %image_hologramme(2*rows+1:3*rows, cols+1:2*cols, :) = image_originale; % Bas
-    step_cols = floor((nouvelles_cols-cols)/2);
-    image_hologramme(nouvelles_rows-rows+1:nouvelles_rows, step_cols:step_cols+cols-1, :) = ...
-        image_hologramme(nouvelles_rows-rows+1:nouvelles_rows, step_cols:step_cols+cols-1, :) + image_originale;
-    
+    row_offset = 200;
+    col_offset = 300;
     
     % Placer l'image d'origine sur le côté de droite avec rotation à 90 degrés
     %image_hologramme(rows+1:2*rows, 2*cols+1:3*cols, :) = imrotate(image_originale, 90, 'bilinear', 'crop'); % Droite
-    step_rows = floor((nouvelles_rows-rows)/2);
-    image_hologramme(step_rows:step_rows+rows-1, nouvelles_cols-cols+1:nouvelles_cols, :) = ...
-        image_hologramme(step_rows:step_rows+rows-1, nouvelles_cols-cols+1:nouvelles_cols, :) + imrotate(image_originale, 90, 'bilinear', 'crop');
+    start_rows = (Height/2)-(width_img/2) + row_offset;
+    end_rows = (Height/2)+(width_img/2) - 1 + row_offset;
+    start_cols = Width-height_img - col_offset;
+    end_cols = Width - col_offset;
+    image_originale = imresize(image_originale, [end_rows-start_rows+1, end_cols-start_cols+1]);
+    
+    image_hologramme(start_rows:end_rows, start_cols:end_cols, :) = ...
+        image_hologramme(start_rows:end_rows, start_cols:end_cols, :) + imrotate(image_originale, 90, 'bilinear', 'crop');
     
     
-    % Placer l'image d'origine sur le côté du haut avec rotation à 180 degrés
-    %image_hologramme(1:rows, cols+1:2*cols, :) = imrotate(image_originale, 180, 'bilinear', 'crop'); % Haut
-    %step_cols = floor((nouvelles_cols-cols)/2);
-    %image_hologramme(1:rows, step_cols-1:step_cols+cols-2, :) = ...
-    %    image_hologramme(1:rows, step_cols-1:step_cols+cols-2, :) + imrotate(image_originale, 180, 'bilinear', 'crop');
+    % Placer l'image d'origine sur le côté de droite avec rotation à 270 degrés
+    %image_hologramme(rows+1:2*rows, 2*cols+1:3*cols, :) = imrotate(image_originale, 270, 'bilinear', 'crop'); % Droite
+    start_rows = (Height/2)-(width_img/2) + row_offset;
+    end_rows = (Height/2)+(width_img/2) - 1 + row_offset;
+    start_cols = 1 + col_offset;
+    end_cols = height_img + 1 + col_offset;
+    image_originale = imresize(image_originale, [end_rows-start_rows+1, end_cols-start_cols+1]);
     
+    image_hologramme(start_rows:end_rows, start_cols:end_cols, :) = ...
+        image_hologramme(start_rows:end_rows, start_cols:end_cols, :) + imrotate(image_originale, 270, 'bilinear', 'crop');
     
-    % Placer l'image d'origine sur le côté de gauche avec rotation à 270 degrés
-    %image_hologramme(rows+1:2*rows, 1:cols, :) = imrotate(image_originale, 270, 'bilinear', 'crop'); % Gauche
-    step_rows = floor((nouvelles_rows-rows)/2);
-    image_hologramme(step_rows+1:step_rows+rows, 1:cols, :) = ...
-        image_hologramme(step_rows+1:step_rows+rows, 1:cols, :) + imrotate(image_originale, 270, 'bilinear', 'crop');
-   
-    % Remplir le centre de l'image avec une zone noire
-    mid_sqr_factor = 3.44/25.94;
-    middle_square = floor(max(mid_sqr_factor * rows, mid_sqr_factor * cols));
-    middle_square_half = round(middle_square/2);
-    image_hologramme(rows+1-middle_square_half:rows+middle_square_half, cols+1-middle_square_half:cols+middle_square_half, :) = 0;
+    % Placer l'image d'origine sur le côté de droite avec rotation à 180 degrés
+    %image_hologramme(rows+1:2*rows, 2*cols+1:3*cols, :) = imrotate(image_originale, 180, 'bilinear', 'crop'); % Droite
+    start_rows = 1;
+    end_rows = height_img+1;
+    start_cols = (Width/2)-(width_img/2);
+    end_cols = (Width/2)+(width_img/2) - 1;
+    image_originale = imresize(image_originale, [end_rows-start_rows+1, end_cols-start_cols+1]);
+    
+    image_hologramme(start_rows:end_rows, start_cols:end_cols, :) = ...
+        image_hologramme(start_rows:end_rows, start_cols:end_cols, :) + imrotate(image_originale, 180, 'bilinear', 'crop');
 
 
    output_frame = image_hologramme;
