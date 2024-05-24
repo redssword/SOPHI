@@ -1,10 +1,14 @@
 % Video reader
-videoFile = 'jellyfish_video.mp4';
+%nouveau_killian.avi
+%jellyfish_video.mp4
+videoFile = 'killian_carre.mp4';
 vidObj = VideoReader(videoFile);
 
 % Créez un objet VideoWriter
-outputVideo = VideoWriter('res/jellyfish_video.mp4', 'MPEG-4');
-open(outputVideo);
+%outputVideo = VideoWriter('res/jellyfish_video.mp4', 'MPEG-4');
+outputVideo = VideoWriter('res/killian_carre', 'MPEG-4');
+outputVideo.FrameRate = vidObj.FrameRate;
+open(outputVideo);  
 
 % Boucle pour écrire chaque image traitée dans la nouvelle vidéo
 % Utilisez la même boucle que celle utilisée pour le traitement image par image
