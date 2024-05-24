@@ -1,6 +1,6 @@
 % Charger la vidéo
 
-video_name = 'killian.avi';
+video_name = 'atom.mp4';
 fond_name = 'image_noire.png';
 cmd = "transparent-background --source " + video_name + " --dest video_ia --type " + fond_name + "--mode fast ";
 %system('transparent-background --source killian.avi --dest killian_ia.avi --type image_noire.png --mode fast')

@@ -1,5 +1,5 @@
 % Lire la vidéo d'entrée
-videoFile = 'nouveau_killian.avi'; % Remplacez par le chemin de votre vidéo
+videoFile = 'atom.mp4'; % Remplacez par le chemin de votre vidéo
 videoReader = VideoReader(videoFile);
 
 % Obtenir les dimensions de la vidéo
@@ -10,7 +10,7 @@ videoHeight = videoReader.Height;
 sideLength = max(videoWidth, videoHeight);
 
 % Créer un objet VideoWriter pour la nouvelle vidéo
-outputFile = 'killian_carre'; % Nom de la nouvelle vidéo
+outputFile = 'atom_carre'; % Nom de la nouvelle vidéo
 videoWriter = VideoWriter(outputFile, 'MPEG-4');
 videoWriter.FrameRate = videoReader.FrameRate;
 open(videoWriter);

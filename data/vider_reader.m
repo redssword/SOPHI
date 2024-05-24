@@ -1,12 +1,12 @@
 % Video reader
 %nouveau_killian.avi
 %jellyfish_video.mp4
-videoFile = 'killian_carre.mp4';
+videoFile = 'world.mp4';
 vidObj = VideoReader(videoFile);
 
 % Créez un objet VideoWriter
 %outputVideo = VideoWriter('res/jellyfish_video.mp4', 'MPEG-4');
-outputVideo = VideoWriter('res/killian_carre', 'MPEG-4');
+outputVideo = VideoWriter('res/world', 'MPEG-4');
 outputVideo.FrameRate = vidObj.FrameRate;
 open(outputVideo);  
 
