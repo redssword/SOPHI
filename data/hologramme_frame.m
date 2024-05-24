@@ -24,7 +24,7 @@ function output_frame = hologramme_frame(input_frame)
     image_hologramme = zeros(Height, Width, 3, 'uint8');
     
     row_offset = 200;
-    col_offset = 300;
+    col_offset = 400;
     
     % Placer l'image d'origine sur le côté de droite avec rotation à 90 degrés
     %image_hologramme(rows+1:2*rows, 2*cols+1:3*cols, :) = imrotate(image_originale, 90, 'bilinear', 'crop'); % Droite
@@ -51,8 +51,10 @@ function output_frame = hologramme_frame(input_frame)
     
     % Placer l'image d'origine sur le côté de droite avec rotation à 180 degrés
     %image_hologramme(rows+1:2*rows, 2*cols+1:3*cols, :) = imrotate(image_originale, 180, 'bilinear', 'crop'); % Droite
-    start_rows = 1;
-    end_rows = height_img+1;
+   row_offset = 100;
+    col_offset = 0;
+    start_rows = 1 + row_offset;
+    end_rows = height_img + 1 + row_offset;
     start_cols = (Width/2)-(width_img/2);
     end_cols = (Width/2)+(width_img/2) - 1;
     image_originale = imresize(image_originale, [end_rows-start_rows+1, end_cols-start_cols+1]);
